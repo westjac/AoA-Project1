@@ -141,6 +141,15 @@
   <ItemGroup>
     <ClCompile Include="ropes.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\..\..\..\Documents\OneDrive - SDSMT\Current Classes\Analysis of Algorithms - CSC 372\Project 1\Ropes0-6\ropes00.txt" />
+    <Text Include="..\..\..\..\..\Documents\OneDrive - SDSMT\Current Classes\Analysis of Algorithms - CSC 372\Project 1\Ropes0-6\ropes01.txt" />
+    <Text Include="..\..\..\..\..\Documents\OneDrive - SDSMT\Current Classes\Analysis of Algorithms - CSC 372\Project 1\Ropes0-6\ropes02.txt" />
+    <Text Include="..\..\..\..\..\Documents\OneDrive - SDSMT\Current Classes\Analysis of Algorithms - CSC 372\Project 1\Ropes0-6\ropes03.txt" />
+    <Text Include="..\..\..\..\..\Documents\OneDrive - SDSMT\Current Classes\Analysis of Algorithms - CSC 372\Project 1\Ropes0-6\ropes04.txt" />
+    <Text Include="..\..\..\..\..\Documents\OneDrive - SDSMT\Current Classes\Analysis of Algorithms - CSC 372\Project 1\Ropes0-6\ropes05.txt" />
+    <Text Include="..\..\..\..\..\Documents\OneDrive - SDSMT\Current Classes\Analysis of Algorithms - CSC 372\Project 1\Ropes0-6\ropes06.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
