@@ -17,6 +17,7 @@ int main(int argc, char** argv)
 {
     vector<pair<int, int>> Diameter; //Diameter Array
     vector<pair<int, int>> Strength; //Strength Array
+    pair<vector<vector<int>>, vector<vector<string>>> Cost_Direction;
     vector<pair<int, int>> answer; //Answer Array
     
     if (argc > 1)
@@ -50,7 +51,8 @@ int main(int argc, char** argv)
     //printVectorPair(Diameter);
     //printVectorPair(sortedDiameter);
 
-
+    Cost_Direction = LCS_LENGTH(sortedDiameter, sortedStrength);
+   //GET_LCS(Cost_Direction. STOPPED HERE
     
 
     return 0;
