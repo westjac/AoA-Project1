@@ -13,6 +13,7 @@ void printVectorPair(vector<pair<int, int>> list);
 void LCS_LENGTH(vector<pair<int, int>> A, vector<pair<int, int>> B, vector<vector<string>>& direction, vector<vector<int>>& cost);
 void GET_LCS(vector<vector<string>> direction, vector<pair<int, int>> A, vector<int>& answer, int x, int y);
 void print2DArray(vector<vector<string>> array);
+void print2DArray(vector<vector<int>> array);
 
 int main(int argc, char** argv)
 {
@@ -23,6 +24,7 @@ int main(int argc, char** argv)
     answer.resize(Diameter.size());
     answer.resize(Diameter.size());
     
+    //Fill vectors
     if (argc > 1)
     {
         ifstream inFile;
@@ -48,20 +50,28 @@ int main(int argc, char** argv)
         inFile.close();
     }
 
+    //Sort each component decending
     vector<pair<int, int>> sortedDiameter = sortDecending(Diameter);
     vector<pair<int, int>> sortedStrength = sortDecending(Strength);
 
-    //printVectorPair(Diameter);
-    //printVectorPair(sortedDiameter);
+    
+    //Set direction and cost 2d arrays
     int length = Diameter.size();
     vector<vector<string>> direction(length, vector<string>(length));
     vector<vector<int>> cost(length, vector<int>(length));
 
+    //Run LCS
     LCS_LENGTH(sortedDiameter, sortedStrength, direction, cost);
+
+    //Evaluate LCS Results
     GET_LCS(direction, sortedDiameter, answer, sortedDiameter.size() - 1, sortedDiameter.size() - 1);
     
-    print2DArray(direction);
+    //Print direction array for debugging
+    //print2DArray(direction);
+    print2DArray(cost);
 
+    
+    //Print indexes of answer
     for (int i = 0; i < answer.size(); i++)
         cout << answer[i] << endl;
 
@@ -86,6 +96,18 @@ void printVectorPair(vector<pair<int, int>> list)
 }
 
 void print2DArray(vector<vector<string>> array)
+{
+    for(int i = 0; i < array.size(); i++)
+    {
+        for(int j = 0; j < array.size(); j++)
+        {
+            cout << array[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+
+void print2DArray(vector<vector<int>> array)
 {
     for(int i = 0; i < array.size(); i++)
     {
