@@ -12,6 +12,7 @@ vector<pair<int, int>> sortDecending(vector<pair<int, int>> list);
 void printVectorPair(vector<pair<int, int>> list);
 pair<vector<vector<int>>, vector<vector<string>>> LCS_LENGTH(vector<pair<int, int>> A, vector<pair<int, int>> B, vector<vector<string>>& direction, vector<vector<int>>& cost);
 void GET_LCS(vector<vector<string>> direction, vector<pair<int, int>> A, vector<int>& answer, int x, int y);
+void print2DArray(vector<vector<string>> array);
 
 int main(int argc, char** argv)
 {
@@ -56,9 +57,11 @@ int main(int argc, char** argv)
     vector<vector<string>> direction(length, vector<string>(length));
     vector<vector<int>> cost(length, vector<int>(length));
 
-    Cost_Direction = LCS_LENGTH(sortedDiameter, sortedStrength, direction, cost);
+    LCS_LENGTH(sortedDiameter, sortedStrength, direction, cost);
     GET_LCS(direction, sortedDiameter, answer, sortedDiameter.size() - 1, sortedDiameter.size() - 1);
     
+    print2DArray(direction);
+
     for (int i = 0; i < answer.size(); i++)
         cout << answer[i] << endl;
 
@@ -82,6 +85,18 @@ void printVectorPair(vector<pair<int, int>> list)
     }
 }
 
+void print2DArray(vector<vector<string>> array)
+{
+    for(int i = 0; i < array.size(); i++)
+    {
+        for(int j = 0; j < array.size(); j++)
+        {
+            cout << array[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+
 pair<vector<vector<int>>, vector<vector<string>>> LCS_LENGTH(vector<pair<int, int>> A, vector<pair<int, int>> B, vector<vector<string>> &direction, vector<vector<int>> &cost)
 {
     int length = A.size();
@@ -96,7 +111,7 @@ pair<vector<vector<int>>, vector<vector<string>>> LCS_LENGTH(vector<pair<int, in
     {
         for (int y = 1; y < length; y++)
         {
-            if (A[x] == B[y])
+            if (A[x].second == B[y].second)
             {
                 cost[x][y] = cost[x - 1][y - 1] + 1;
                 direction[x][y] = "UL";
