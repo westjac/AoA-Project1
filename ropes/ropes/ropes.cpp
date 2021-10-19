@@ -10,15 +10,17 @@ using namespace std;
 
 vector<pair<int, int>> sortDecending(vector<pair<int, int>> list);
 void printVectorPair(vector<pair<int, int>> list);
-pair<vector<vector<int>>, vector<vector<string>>> LCS_LENGTH(vector<pair<int, int>> A, vector<pair<int, int>> B);
-void GET_LCS(vector<vector<int>> direction, vector<pair<int, int>> A, vector<int> &answer, int x, int y);
+pair<vector<vector<int>>, vector<vector<string>>> LCS_LENGTH(vector<pair<int, int>> A, vector<pair<int, int>> B, vector<vector<string>>& direction, vector<vector<int>>& cost);
+void GET_LCS(vector<vector<string>> direction, vector<pair<int, int>> A, vector<int>& answer, int x, int y);
 
 int main(int argc, char** argv)
 {
     vector<pair<int, int>> Diameter; //Diameter Array
     vector<pair<int, int>> Strength; //Strength Array
     pair<vector<vector<int>>, vector<vector<string>>> Cost_Direction;
-    vector<pair<int, int>> answer; //Answer Array
+    vector<int> answer; //Answer Array
+    answer.resize(Diameter.size());
+    answer.resize(Diameter.size());
     
     if (argc > 1)
     {
@@ -50,10 +52,15 @@ int main(int argc, char** argv)
 
     //printVectorPair(Diameter);
     //printVectorPair(sortedDiameter);
+    int length = Diameter.size();
+    vector<vector<string>> direction(length, vector<string>(length));
+    vector<vector<int>> cost(length, vector<int>(length));
 
-    Cost_Direction = LCS_LENGTH(sortedDiameter, sortedStrength);
-   //GET_LCS(Cost_Direction. STOPPED HERE
+    Cost_Direction = LCS_LENGTH(sortedDiameter, sortedStrength, direction, cost);
+    GET_LCS(direction, sortedDiameter, answer, sortedDiameter.size() - 1, sortedDiameter.size() - 1);
     
+    for (int i = 0; i < answer.size(); i++)
+        cout << answer[i] << endl;
 
     return 0;
 }
@@ -75,11 +82,9 @@ void printVectorPair(vector<pair<int, int>> list)
     }
 }
 
-pair<vector<vector<int>>, vector<vector<string>>> LCS_LENGTH(vector<pair<int, int>> A, vector<pair<int, int>> B)
+pair<vector<vector<int>>, vector<vector<string>>> LCS_LENGTH(vector<pair<int, int>> A, vector<pair<int, int>> B, vector<vector<string>> &direction, vector<vector<int>> &cost)
 {
     int length = A.size();
-    vector<vector<string>> direction;
-    vector<vector<int>> cost;
 
     for (int x = 1; x < length; x++)
         cost[x][0] = 0;
@@ -106,10 +111,9 @@ pair<vector<vector<int>>, vector<vector<string>>> LCS_LENGTH(vector<pair<int, in
                 cost[x][y] = cost[x][y - 1];
                 direction[x][y] = "U";
             }
-
-            return make_pair(cost, direction);
         }
     }
+    return make_pair(cost, direction);
 }
 
 void GET_LCS(vector<vector<string>> direction, vector<pair<int, int>> A, vector<int> &answer, int x, int y)
