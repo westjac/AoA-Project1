@@ -57,18 +57,18 @@ int main(int argc, char** argv)
     
     //Set direction and cost 2d arrays
     int length = Diameter.size();
-    vector<vector<string>> direction(length, vector<string>(length));
-    vector<vector<int>> cost(length, vector<int>(length));
+    vector<vector<string>> direction(length+1, vector<string>(length+1));
+    vector<vector<int>> cost(length+1, vector<int>(length+1));
 
     //Run LCS
     LCS_LENGTH(sortedDiameter, sortedStrength, direction, cost);
 
     //Evaluate LCS Results
-    GET_LCS(direction, sortedDiameter, answer, sortedDiameter.size() - 1, sortedDiameter.size() - 1);
+    GET_LCS(direction, sortedDiameter, answer, sortedDiameter.size(), sortedDiameter.size());
     
     //Print direction array for debugging
     //print2DArray(direction);
-    print2DArray(cost);
+    print2DArray(direction);
 
     
     //Print indexes of answer
@@ -123,17 +123,17 @@ void LCS_LENGTH(vector<pair<int, int>> A, vector<pair<int, int>> B, vector<vecto
 {
     int length = A.size();
 
-    for (int x = 1; x < length; x++)
+    for (int x = 0; x < length; x++)
         cost[x][0] = 0;
     
     for (int y = 0; y < length; y++)
         cost[0][y] = 0;
 
-    for (int x = 1; x < length; x++)
+    for (int x = 1; x <= length; x++)
     {
-        for (int y = 1; y < length; y++)
+        for (int y = 1; y <= length; y++)
         {
-            if (A[x].second == B[y].second)
+            if (A[x-1].second == B[y-1].second)
             {
                 cost[x][y] = cost[x - 1][y - 1] + 1;
                 direction[x][y] = "UL";
@@ -159,7 +159,7 @@ void GET_LCS(vector<vector<string>> direction, vector<pair<int, int>> A, vector<
     if (direction[x][y] == "UL")
     {
         GET_LCS(direction, A, answer, x, y - 1);
-        answer.push_back(A[x].second);
+        answer.push_back(A[x-1].second);
     }
     else if (direction[x][y] == "U")
         GET_LCS(direction, A, answer, x, y - 1);
