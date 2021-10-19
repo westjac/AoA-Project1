@@ -10,7 +10,7 @@ using namespace std;
 
 vector<pair<int, int>> sortDecending(vector<pair<int, int>> list);
 void printVectorPair(vector<pair<int, int>> list);
-pair<vector<vector<int>>, vector<vector<string>>> LCS_LENGTH(vector<pair<int, int>> A, vector<pair<int, int>> B, vector<vector<string>>& direction, vector<vector<int>>& cost);
+void LCS_LENGTH(vector<pair<int, int>> A, vector<pair<int, int>> B, vector<vector<string>>& direction, vector<vector<int>>& cost);
 void GET_LCS(vector<vector<string>> direction, vector<pair<int, int>> A, vector<int>& answer, int x, int y);
 void print2DArray(vector<vector<string>> array);
 
@@ -97,7 +97,7 @@ void print2DArray(vector<vector<string>> array)
     }
 }
 
-pair<vector<vector<int>>, vector<vector<string>>> LCS_LENGTH(vector<pair<int, int>> A, vector<pair<int, int>> B, vector<vector<string>> &direction, vector<vector<int>> &cost)
+void LCS_LENGTH(vector<pair<int, int>> A, vector<pair<int, int>> B, vector<vector<string>> &direction, vector<vector<int>> &cost)
 {
     int length = A.size();
 
@@ -128,7 +128,6 @@ pair<vector<vector<int>>, vector<vector<string>>> LCS_LENGTH(vector<pair<int, in
             }
         }
     }
-    return make_pair(cost, direction);
 }
 
 void GET_LCS(vector<vector<string>> direction, vector<pair<int, int>> A, vector<int> &answer, int x, int y)
