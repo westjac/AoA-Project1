@@ -68,12 +68,13 @@ int main(int argc, char** argv)
     
     //Print direction array for debugging
     //print2DArray(direction);
-    print2DArray(direction);
+    //print2DArray(direction);
 
     
-    //Print indexes of answer
+    //Print Answer
+    cout << answer.size() << endl;
     for (int i = 0; i < answer.size(); i++)
-        cout << answer[i] << endl;
+        cout << answer[i] << " -> " << Diameter[answer[i]].first << " : " << Strength[answer[i]].first << endl;
 
     return 0;
 }
